@@ -5,7 +5,6 @@ package de.tolina.shareventui;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -34,7 +33,6 @@ public class MainScreen extends CustomComponent {
 	private List<Registration> listenerRegistrations = new ArrayList<>();
 
 	@Autowired
-	@SuppressWarnings("squid:S00107")
 	public MainScreen(SpringNavigator navigator) {
 		this.navigator = navigator;
 		VerticalLayout layout = new VerticalLayout();
@@ -51,11 +49,11 @@ public class MainScreen extends CustomComponent {
 		layout.setExpandRatio(viewContainer, 1f);
 
 		navigator.init(UI.getCurrent(), viewContainer);
-
-		final String viewName = Optional.of(navigator)//
-				.map(SpringNavigator::getState)//
-				.orElse("");
-		navigator.navigateTo(viewName);
+		//
+		//		final String viewName = Optional.of(navigator)//
+		//				.map(SpringNavigator::getState)//
+		//				.orElse(AnfrageView.VIEWNAME);
+		navigator.navigateTo(AnfrageView.VIEWNAME);
 	}
 
 	@Override

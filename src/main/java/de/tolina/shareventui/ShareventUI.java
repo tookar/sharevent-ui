@@ -8,6 +8,7 @@ import static com.vaadin.shared.ui.ui.Transport.WEBSOCKET_XHR;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 
 import com.vaadin.annotations.PreserveOnRefresh;
@@ -34,6 +35,11 @@ public class ShareventUI extends UI {
 	private final transient Logger log = LoggerFactory.getLogger(ShareventUI.class);
 
 	private transient ApplicationContext applicationContext;
+
+	@Autowired
+	public ShareventUI(ApplicationContext applicationContext) {
+		this.applicationContext = applicationContext;
+	}
 
 	@Override
 	protected void init(VaadinRequest request) {
