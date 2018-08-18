@@ -1,0 +1,324 @@
+// If you edit this file you need to compile the theme. See README.md for details.
+// Global variable overrides. Must be declared before importing Valo.
+// Defines the plaintext font size, weight and family. Font size affects general component sizing.
+$v-font-size: 13px;
+$cs-font-color: #676767;
+$cs-primary-color: #3380CF;
+$v-font-weight: 400;
+//$v-font-family: "Open Sans", sans-serif;
+// Defines the border used by all components.
+//$v-border: 1px solid (v-shade 0.7);
+//$v-border-radius: 4px;
+// Affects the color of some component elements, e.g Button, Panel title, etc
+//$v-background-color: hsl(88, 50%, 53%);
+//$v-background-color: hsl(88, 52%, 94%);
+// Affects the color of content areas, e.g  Panel and Window content, TextField input etc
+//$v-app-background-color: hsl(88, 52%, 94%);
+// Affects the visual appearance of all components
+//$v-gradient: v-linear 8%;
+//$v-bevel-depth: 30%;
+//$v-shadow-opacity: 5%;
+// Defines colors for indicating status (focus, success, failure)
+//$v-focus-color: valo-focus-color(); // Calculates a suitable color automatically
+//$v-friendly-color: #2c9720;
+//$v-error-indicator-color: #ed473b;
+// For more information, see: https://vaadin.com/book/-/page/themes.valo.html
+// Example variants can be copy/pasted from https://vaadin.com/wiki/-/wiki/Main/Valo+Examples
+$v-panel-background-color: hsl(0, 100%, 100%);
+$v-font-color-contrast: 0.9;
+$v-font-color: $cs-font-color;
+//$v-font-color--colored: #ff0000;
+//$v-font-color--colored: darken($v-selection-color, 5);
+
+@import "../valo/shared/_variables.scss";
+@import "../valo/valo.scss";
+$v-selection-color: darken(valo-focus-color(), 5);
+
+@import "../tolinaCommons.scss";
+$wigetset-name: "de.tolina.siz.Widgetset";
+
+@import "../window.scss";
+@import "../horizontalSeparator.scss";
+@import "../extendedMenu/extendedMenu.scss";
+@import "../collapsibleBox/collapsibleBox.scss";
+@import "../contentpanel/contentPanel.scss";
+@import "../captionpanel/_captionPanel.scss";
+@import "../ckeditor/_ckeditorWrapper.scss";
+@import "components/progressWindow.scss";
+@import "components/basisdatenMainContentPanel.scss";
+@import "components/panelWithHoverButtons.scss";
+@import "components/textCountLabel.scss";
+@import "components/searchField.scss";
+@import "components/kontrollplan.scss";
+@import "components/_haupttextPanelStatusCombo.scss";
+@import "components/_risikoindikatorField.scss";
+@import "views/cockpit.scss";
+@import "views/umChangePasswordComponent.scss";
+@import "views/risikotraegerView.scss";
+@import "views/_sicherungsmassnahmenView.scss";
+@import "views/_typologienView.scss";
+@import "views/_gfaCockpit";
+@import "views/_typologienView.scss";
+@import "styles/headerBar";
+@import "components/menuBar.scss";
+@import "components/cockpitTile.scss";
+@import "components/sectionAdjustmentsMixin.scss";
+@import "styles/tableDefinition.scss";
+@import "styles/gridDefinition.scss";
+@import "components/_beteiligungsmanagement.scss";
+@import "../styles/_dropShadow";
+
+@mixin cstheme {
+    @include valo;
+    @include horizontalSeparator;
+    @include tolinaCommons;
+    @include extended-menu;
+    @include content-panel($cs-font-color);
+    @include caption-panel;
+    @include ckeditor-wrapper;
+    @include header-bar;
+    @include cockpit-tile;
+    @include table-definition;
+    @include grid-definition;
+    @include panel-with-hover-buttons;
+    @include text-count-label;
+    @include searchFieldComponent;
+    @include progress-window;
+    @include basisdaten-main-content-panel;
+    @include mfc-collapsible-box;
+    @include gfaCockpit;
+    @include kontrollplan;
+    @include haupttextPanelStatusCombo;
+    @include beteiligungsmanagement;
+    @include risikoindikatorfield;
+
+    &.v-app {
+        color: $cs-font-color;
+    }
+
+    .background-style {
+        background-color: white;
+        border-radius: 3px;
+        @include drop-shadow;
+    }
+
+    & .v-window-outerheader:after {
+        border: none !important;
+    }
+    & .v-window-contents > .v-scrollable:before {
+        border: none !important;
+    }
+
+    .v-button-basisdatenmenu {
+        font-size: 15px;
+        width: 100%;
+        text-align: left;
+    }
+
+    .v-button-without-selection-border {
+        &:focus:after {
+            box-shadow: none;
+        }
+    }
+
+    .v-button-bold-primary-color {
+        color: $cs-primary-color !important;
+        font-weight: 600;
+    }
+
+    .v-textfield {
+        height: 30px;
+    }
+
+    .resetbuttonfortextfield-resetbutton-v7 {
+        top: 3.5px !important;
+        right: 20px;
+        width: 14px !important;
+        height: 14px !important;
+        border-radius: 8px;
+    }
+
+    .v-window {
+        color: valo-font-color($v-background-color);
+    }
+
+    .v-tabsheet-tabitemcell .v-captiontext, .v-table-compact .v-table-header-wrap, .v-table-compact .v-table-footer-wrap, .v-table-compact .v-table-header-drag {
+        font-weight: 800 !important;
+    }
+
+    // checkbox contrast
+    .v-checkbox {
+        & > input:checked ~ label:before {
+            border: valo-border();
+            background-image: none;
+            background-color: lighten($v-background-color, 2);
+        }
+        & > input:checked ~ label:after {
+            color: darken($v-selection-color, 15.0) !important;
+            font-weight: bold;
+        }
+    }
+
+    .v-upload .v-button {
+        text-align: center;
+    }
+
+    .file-component {
+        background-color: lighten($v-background-color, 5) !important;
+        margin: 5px;
+        width: 230px;
+        height: 215px;
+        position: relative;
+        overflow: hidden;
+        border: valo-border();
+        border-radius: 5px;
+        border-width: 2px;
+
+        .file-icon {
+            font-size: 40px;
+            margin-top: 15px;
+            margin-bottom: 15px;
+            height: 62px;
+        }
+
+        .overlay {
+            position: absolute;
+            width: 230px;
+            height: 215px;
+            background-color: darken($v-background-color, 2) !important;
+            display: none;
+            z-index: 1000;
+            cursor: pointer;
+
+            .download-icon {
+                font-size: 70px;
+                height: 70px;
+                width: 70px;
+                margin: 10px;
+            }
+        }
+
+        &:hover .overlay {
+            display: block;
+        }
+    }
+
+    // FOR DEMO
+    .details-content > div:nth-child(2n+1) {
+        font-weight: bold;
+    }
+
+    .accessdeniedview-error {
+        background: lighten($v-background-color, 5);
+        padding: 10px;
+        border: valo-border();
+        border-width: 2px;
+        border-radius: 10px;
+
+        .icon {
+            margin: 15px;
+            font-size: 50px;
+            color: red;
+        }
+
+        .content {
+            margin-left: 10px;
+
+            .h1 {
+                margin: 15px 0;
+                font-weight: bold;
+                color: red;
+            }
+
+            .message {
+                font-size: 1.1em;
+            }
+        }
+    }
+
+    .custom-spacing-vertical-doppelt {
+        & > * > .v-spacing {
+            height: 10px;
+        }
+        & > .v-spacing {
+            height: 10px;
+        }
+    }
+
+    .custom-spacing-horizontal-doppelt {
+        & > * > .v-spacing {
+            width: 10px;
+        }
+        & > .v-spacing {
+            width: 10px;
+        }
+    }
+
+    .custom-spacing-vertical-dreifach {
+        & > * > .v-spacing {
+            height: 15px;
+        }
+        & > .v-spacing {
+            height: 15px;
+        }
+    }
+
+    .custom-spacing-horizontal-dreifach {
+        & > * > .v-spacing {
+            width: 15px;
+        }
+        & > .v-spacing {
+            width: 15px;
+        }
+    }
+
+    .cs-padding-fuenf {
+        padding: 5px;
+    }
+    .cs-leftmargin-fuenf {
+        margin-left: 5px !important;
+    }
+    .cs-rightmargin-fuenf {
+        margin-right: 5px !important;
+    }
+
+    .disable-firstrow-padding {
+        [class*="margin-top"] > tbody > [class*="firstrow"] > td {
+            padding-top: 0;
+        }
+    }
+
+    .set_min_width {
+        min-width: 350px;
+    }
+
+    .iconMitBearbeitungsstand {
+        display: flex;
+        align-items: center;
+        margin: 3px 0 !important;
+
+        .v-customcomponent {
+            padding-right: 15px;
+        }
+    }
+
+    .GWBP {
+        @include sectionColorAdjustmentMixin($highlight-color: $cs-primary-color);
+    }
+
+    .MASTER {
+        @include sectionColorAdjustmentMixin($highlight-color: $cs-primary-color);
+    }
+
+    .BENUTZERVERWALTUNG {
+        @include sectionColorAdjustmentMixin($highlight-color: #777777);
+    }
+
+    .SQLTOOL {
+        @include sectionColorAdjustmentMixin($highlight-color: #890000);
+    }
+
+    .grey {
+        color: #d1d1d1 !important;
+    }
+}

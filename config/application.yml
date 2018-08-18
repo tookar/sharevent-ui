@@ -1,0 +1,10 @@
+spring:
+  application:
+    name: sharevent-ui
+  profiles:
+    active: sharedconfig
+
+server:
+  port: 8080
+  servlet:
+    path: /

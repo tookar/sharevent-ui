@@ -1,0 +1,21 @@
+# spring boot actuator configuration
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,prometheus
+    jmx:
+      unique-names: true
+      exposure:
+        exclude: "*"
+
+# additional spring configuration
+spring:
+  jmx:
+    default-domain: ${spring.application.name}
+    enabled: false
+
+logging:
+  pattern:
+    console: "%clr(%d{HH:mm:ss.SSS}){faint} %clr(%5p) %clr(%-40.40logger{0}){cyan} %clr(:){faint} %m%n"
+  file: logs/${spring.application.name}.log

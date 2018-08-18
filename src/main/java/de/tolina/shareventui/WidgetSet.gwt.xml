@@ -1,0 +1,7 @@
+<!--
+  ~ (c) tolina GmbH, 2017
+  -->
+
+<module>
+    <inherits name="com.vaadin.DefaultWidgetSet"/>
+</module>
