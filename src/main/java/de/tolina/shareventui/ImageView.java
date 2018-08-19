@@ -40,7 +40,7 @@ public class ImageView extends AbsoluteLayout implements View {
 			if (pageNumber == 1) {
 				navigator.navigateTo(AnfrageView.VIEWNAME);
 			} else {
-				navigator.navigateTo(VIEWNAME + "/" + pageNumber + 1);
+				navigator.navigateTo(VIEWNAME + "/" + (pageNumber + 1));
 			}
 		});
 	}

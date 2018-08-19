@@ -13,14 +13,14 @@ import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener;
 import com.vaadin.server.StreamResource;
 import com.vaadin.spring.annotation.SpringView;
+import com.vaadin.ui.AbsoluteLayout;
 import com.vaadin.ui.Image;
-import com.vaadin.ui.VerticalLayout;
 
 import de.tolina.sharevent.api.hacon.route.Trip;
 import de.tolina.sharevent.client.AnfrageClient;
 
 @SpringView(name = MapView.VIEWNAME)
-public class MapView extends VerticalLayout implements View {
+public class MapView extends AbsoluteLayout implements View {
 
 	protected static final String VIEWNAME = "map";
 
@@ -37,12 +37,16 @@ public class MapView extends VerticalLayout implements View {
 				return null;
 			}
 		}, "screens/header.png"));
-
+		header.setWidth(360, Unit.PIXELS);
+		header.setHeight(80, Unit.PIXELS);
 		Trip trip = (Trip) getSession().getAttribute("trip");
 		anfrageClient.getMapImage(trip);
 
 		Image mapImage = new Image(null,
 				new StreamResource((StreamResource.StreamSource) () -> new ByteArrayInputStream(anfrageClient.getMapImage(trip)), "map" + UUID.randomUUID().toString() + ".png"));
+
+		mapImage.setWidth(360, Unit.PIXELS);
+		mapImage.setHeight(619 - 124, Unit.PIXELS);
 
 		Image footer = new Image(null, new StreamResource((StreamResource.StreamSource) () -> {
 			try {
@@ -51,10 +55,17 @@ public class MapView extends VerticalLayout implements View {
 				return null;
 			}
 		}, "screens/footer.png"));
+		footer.setWidth(360, Unit.PIXELS);
+		footer.setHeight(44, Unit.PIXELS);
 
 		addComponent(header);
 		addComponent(mapImage);
 		addComponent(footer);
+		getPosition(header).setTop(Float.valueOf(0), Unit.PIXELS);
+		getPosition(mapImage).setTop(Float.valueOf(80), Unit.PIXELS);
+		getPosition(footer).setTop(Float.valueOf(619 - 44), Unit.PIXELS);
+
+
 		MouseEvents.ClickListener clickListener = e -> navigator.navigateTo(ImageView.VIEWNAME + "/2");
 		header.addClickListener(clickListener);
 		mapImage.addClickListener(clickListener);
