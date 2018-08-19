@@ -6,11 +6,11 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
-import de.tolina.shareventui.client.AnfrageClient;
+import de.tolina.sharevent.client.AnfrageClient;
 
 @SpringBootApplication(scanBasePackages = { //
 		"de.tolina.shareventui", //
-		"de.tolina.shareventui.client", //
+		"de.tolina.sharevent.client", //
 })
 public class ShareventUiApplication {
 

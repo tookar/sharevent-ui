@@ -8,7 +8,7 @@ import com.vaadin.spring.annotation.SpringView;
 import com.vaadin.ui.TextField;
 import com.vaadin.ui.VerticalLayout;
 
-import de.tolina.shareventui.client.AnfrageClient;
+import de.tolina.sharevent.client.AnfrageClient;
 
 @SpringView(name = AnfrageView.VIEWNAME)
 public class AnfrageView extends VerticalLayout implements View {

@@ -14,7 +14,6 @@ import org.springframework.context.ApplicationContext;
 import com.vaadin.annotations.PreserveOnRefresh;
 import com.vaadin.annotations.Push;
 import com.vaadin.annotations.Theme;
-import com.vaadin.annotations.Widgetset;
 import com.vaadin.server.VaadinRequest;
 import com.vaadin.spring.annotation.SpringUI;
 import com.vaadin.ui.UI;
@@ -30,7 +29,6 @@ import com.vaadin.ui.UI;
 @PreserveOnRefresh
 @Push(transport = WEBSOCKET_XHR)
 @Theme("sharevent")
-@Widgetset("de.tolina.shareventui.WidgetSet")
 public class ShareventUI extends UI {
 	private final transient Logger log = LoggerFactory.getLogger(ShareventUI.class);
 
