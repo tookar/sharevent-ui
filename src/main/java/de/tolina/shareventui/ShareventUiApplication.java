@@ -17,13 +17,4 @@ public class ShareventUiApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(ShareventUiApplication.class, args);
 	}
-
-	@Bean
-	@Autowired
-	public CommandLineRunner doIt(AnfrageClient anfrageClient) {
-		return args -> {
-			System.err.println(anfrageClient.lookupSites("foo"));
-			;
-		};
-	}
 }
