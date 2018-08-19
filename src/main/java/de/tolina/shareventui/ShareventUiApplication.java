@@ -1,5 +1,6 @@
 package de.tolina.shareventui;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -9,6 +10,7 @@ import de.tolina.shareventui.client.AnfrageClient;
 
 @SpringBootApplication(scanBasePackages = { //
 		"de.tolina.shareventui", //
+		"de.tolina.shareventui.client", //
 })
 public class ShareventUiApplication {
 
@@ -17,6 +19,7 @@ public class ShareventUiApplication {
 	}
 
 	@Bean
+	@Autowired
 	public CommandLineRunner doIt(AnfrageClient anfrageClient) {
 		return args -> {
 			System.err.println(anfrageClient.lookupSites("foo"));

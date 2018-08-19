@@ -6,13 +6,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import de.tolina.sharevent.api.StringListDto;
 import de.tolina.sharevent.route.Routes;
 
-@Component
+@Service
 public class AnfrageClient {
 
 	private RestTemplateBuilder restTemplateBuilder;
@@ -25,12 +25,7 @@ public class AnfrageClient {
 	}
 
 	public StringListDto lookupSites(String input) {
-		URI uri = UriComponentsBuilder.fromUriString(backendUrl)
-				.path(Routes.ANFRAGE_FIND_ROUTE)
-				.queryParam(Routes.PARAM_ORT, input)
-				.build()
-				.encode()
-				.toUri();
+		URI uri = UriComponentsBuilder.fromUriString(backendUrl).path(Routes.ANFRAGE_FIND_ROUTE).queryParam(Routes.PARAM_ORT, input).build().encode().toUri();
 		ResponseEntity<StringListDto> entity = restTemplateBuilder.build().getForEntity(uri, StringListDto.class);
 		return entity.getBody();
 	}
