@@ -1,10 +1,13 @@
 package de.tolina.shareventui;
 
 import java.text.SimpleDateFormat;
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.vaadin.addons.autocomplete.AutocompleteExtension;
 
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener;
@@ -32,10 +35,23 @@ public class AnfrageView extends VerticalLayout implements View {
 	@Override
 	public void enter(ViewChangeListener.ViewChangeEvent event) {
 		setSizeFull();
+
 		TextField start = new TextField("Start");
+		AutocompleteExtension<String> autocompleteExtensionStart = new AutocompleteExtension<>(start);
+		autocompleteExtensionStart.setSuggestionGenerator((query, limit) -> {
+			return returnSuggestionList(query);
+		});
+		autocompleteExtensionStart.addSuggestionSelectListener(entry -> start.setValue(entry.getSelectedValue()));
 		addComponent(start);
+
 		TextField ziel = new TextField("Ziel");
+		AutocompleteExtension<String> autocompleteExtensionZiel = new AutocompleteExtension<>(ziel);
+		autocompleteExtensionZiel.setSuggestionGenerator((query, limit) -> {
+			return returnSuggestionList(query);
+		});
+		autocompleteExtensionZiel.addSuggestionSelectListener(entry -> ziel.setValue(entry.getSelectedValue()));
 		addComponent(ziel);
+
 		TextField freitext = new TextField("Freitext");
 		addComponent(freitext);
 
@@ -43,8 +59,8 @@ public class AnfrageView extends VerticalLayout implements View {
 		addComponent(button);
 
 		button.addClickListener(clickEvent -> {
-			List<StopLocation> startHaltestellen = getStartHaltestellen(start);
-			List<StopLocation> endHaltestellen = getEndHaltestellen(ziel);
+			List<StopLocation> startHaltestellen = getHaltestellen(start.getValue());
+			List<StopLocation> endHaltestellen = getHaltestellen(ziel.getValue());
 
 			String startExtId = getStartExtId(startHaltestellen);
 			String zielExtId = getEndExtId(endHaltestellen);
@@ -59,6 +75,15 @@ public class AnfrageView extends VerticalLayout implements View {
 			else
 				System.err.println("No trip found");
 		});
+	}
+
+	private List<String> returnSuggestionList(String query) {
+		if (query != null) {
+			List<StopLocation> haltestellen = getHaltestellen(query);
+			return haltestellen.stream().limit(10).map(StopLocation::getName).collect(Collectors.toList());
+		} else {
+			return Collections.emptyList();
+		}
 	}
 
 	private String getEndExtId(List<StopLocation> endHaltestellen) {
@@ -78,17 +103,10 @@ public class AnfrageView extends VerticalLayout implements View {
 		return startExtId;
 	}
 
-	private List<StopLocation> getEndHaltestellen(TextField ziel) {
-		String zielString = ziel.getValue();
-		if (zielString == null || "".equals(zielString))
-			zielString = "zoolog";
-		return anfrageClient.lookupHaltestellen(zielString);
-	}
 
-	private List<StopLocation> getStartHaltestellen(TextField start) {
-		String startString = start.getValue();
-		if (startString == null || "".equals(startString))
-			startString = "spandau";
-		return anfrageClient.lookupHaltestellen(startString);
+	private List<StopLocation> getHaltestellen(String input) {
+		if (input == null || "".equals(input))
+			input = "spandau";
+		return anfrageClient.lookupHaltestellen(input);
 	}
 }
