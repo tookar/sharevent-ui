@@ -9,6 +9,7 @@ import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.vaadin.addons.autocomplete.AutocompleteExtension;
 
+import com.vaadin.navigator.Navigator;
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener;
 import com.vaadin.spring.annotation.SpringView;
@@ -26,6 +27,13 @@ public class AnfrageView extends VerticalLayout implements View {
 	protected static final String VIEWNAME = "anfrage";
 
 	private transient AnfrageClient anfrageClient;
+
+	private Navigator navigator;
+
+	@Autowired
+	public void setNavigator(Navigator navigator) {
+		this.navigator = navigator;
+	}
 
 	@Autowired
 	public void setAnfrageClient(AnfrageClient anfrageClient) {
@@ -70,7 +78,8 @@ public class AnfrageView extends VerticalLayout implements View {
 			String nowTimeAsString = new SimpleDateFormat("hh:mm").format(now);
 			List<Trip> trips = anfrageClient.lookupTrips(startExtId, zielExtId, nowDateAsString, nowTimeAsString);
 
-			getSession().setAttribute("trip", trips.get(0).getDuration());
+			getSession().setAttribute("trip", trips.get(0));
+			navigator.navigateTo(MapView.VIEWNAME);
 		});
 	}
 

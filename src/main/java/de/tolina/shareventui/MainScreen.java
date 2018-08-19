@@ -47,7 +47,7 @@ public class MainScreen extends CustomComponent {
 		layout.addComponent(viewContainer);
 
 		navigator.init(UI.getCurrent(), viewContainer);
-		navigator.navigateTo(AnfrageView.VIEWNAME);
+		navigator.navigateTo(ImageView.VIEWNAME + "/1");
 	}
 
 	@Override
