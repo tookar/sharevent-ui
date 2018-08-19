@@ -70,10 +70,7 @@ public class AnfrageView extends VerticalLayout implements View {
 			String nowTimeAsString = new SimpleDateFormat("hh:mm").format(now);
 			List<Trip> trips = anfrageClient.lookupTrips(startExtId, zielExtId, nowDateAsString, nowTimeAsString);
 
-			if (!trips.isEmpty())
-				System.err.println(trips.get(0).getDuration());
-			else
-				System.err.println("No trip found");
+			getSession().setAttribute("trip", trips.get(0).getDuration());
 		});
 	}
 
