@@ -6,6 +6,7 @@ package de.tolina.shareventui;
 
 import static com.vaadin.shared.ui.ui.Transport.WEBSOCKET_XHR;
 
+import com.vaadin.annotations.Widgetset;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

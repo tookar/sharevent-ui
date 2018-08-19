@@ -1,5 +1,4 @@
 @import "sharevent";
-@import "addons.scss";
 
 // This file prefixes all rules with the theme name to avoid causing conflicts with other themes.
 // The actual styles should be defined in sharevent.scss
@@ -9,8 +8,7 @@
 //@include v-font(LiberationSans, '../../../../cstheme/fonts/LiberationSans/LiberationSans-Italic');
 //@include v-font(LiberationSans, '../../../../cstheme/fonts/LiberationSans/LiberationSans-BoldItalic');
 
-.cstheme {
-    @include addons;
-    @include cstheme;
+.sharevent {
+    @include sharevent;
 }
 

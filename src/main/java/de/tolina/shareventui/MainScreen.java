@@ -15,10 +15,9 @@ import com.vaadin.shared.Registration;
 import com.vaadin.spring.annotation.SpringComponent;
 import com.vaadin.spring.annotation.UIScope;
 import com.vaadin.spring.navigator.SpringNavigator;
+import com.vaadin.ui.CssLayout;
 import com.vaadin.ui.CustomComponent;
-import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.UI;
-import com.vaadin.ui.VerticalLayout;
 
 
 @SuppressWarnings("javadoc")
@@ -35,24 +34,19 @@ public class MainScreen extends CustomComponent {
 	@Autowired
 	public MainScreen(SpringNavigator navigator) {
 		this.navigator = navigator;
-		VerticalLayout layout = new VerticalLayout();
-		layout.setSpacing(false);
-		layout.setMargin(false);
+		CssLayout layout = new CssLayout();
 		layout.setSizeFull();
 		setCompositionRoot(layout);
 		setSizeFull();
 
-		HorizontalLayout viewContainer = new HorizontalLayout();
-		viewContainer.setSizeFull();
-		viewContainer.setMargin(true);
+		CssLayout viewContainer = new CssLayout();
+		viewContainer.setId("sharevent-container");
+		viewContainer.setWidth(360, Unit.PIXELS);
+		viewContainer.setHeight(619, Unit.PIXELS);
+
 		layout.addComponent(viewContainer);
-		layout.setExpandRatio(viewContainer, 1f);
 
 		navigator.init(UI.getCurrent(), viewContainer);
-		//
-		//		final String viewName = Optional.of(navigator)//
-		//				.map(SpringNavigator::getState)//
-		//				.orElse(AnfrageView.VIEWNAME);
 		navigator.navigateTo(AnfrageView.VIEWNAME);
 	}
 
