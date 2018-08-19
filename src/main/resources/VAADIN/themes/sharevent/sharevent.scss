@@ -37,6 +37,10 @@ $v-selection-color: darken(valo-focus-color(), 5);
 @mixin sharevent {
   @include valo;
 
+  .v-captiontext {
+    color: white !important;
+  }
+
   #sharevent-container {
     background-color: #3668ff;
     display: flex;

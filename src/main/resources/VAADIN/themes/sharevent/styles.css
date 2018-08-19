@@ -15049,6 +15049,10 @@ div.v-layout.v-horizontal.v-widget {
 	overflow: hidden;
 }
 
+.sharevent .v-captiontext {
+	color: white !important;
+}
+
 .sharevent #sharevent-container {
 	background-color: #3668ff;
 	display: flex;

@@ -6,6 +6,8 @@ import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import com.vaadin.ui.Component;
+import com.vaadin.ui.Label;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.vaadin.addons.autocomplete.AutocompleteExtension;
 
@@ -66,6 +68,10 @@ public class AnfrageView extends VerticalLayout implements View {
 		Button button = new Button("Suchen");
 		addComponent(button);
 
+		Label spacer = new Label("");
+
+		addComponent(spacer);
+		setExpandRatio(spacer,1);
 		button.addClickListener(clickEvent -> {
 			List<StopLocation> startHaltestellen = getHaltestellen(start.getValue());
 			List<StopLocation> endHaltestellen = getHaltestellen(ziel.getValue());
