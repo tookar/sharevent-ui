@@ -102,6 +102,12 @@
         </dependency>
 
         <dependency>
+            <groupId>org.vaadin.addons</groupId>
+            <artifactId>autocomplete</artifactId>
+            <version>0.2.4</version>
+        </dependency>
+
+        <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
         </dependency>
@@ -170,6 +176,9 @@
                     <draftCompile>false</draftCompile>
                     <compileReport>false</compileReport>
                     <style>OBF</style>
+                    <widgetsetMode>
+                        cdn
+                    </widgetsetMode>
                     <persistentunitcachedir>${project.build.directory}/gwtdirt</persistentunitcachedir>
                     <!-- Symbol maps etc, not needed in vaadin app, just target them outside
                         war -->
@@ -320,5 +329,11 @@
         </testResources>
     </build>
 
+    <repositories>
+        <repository>
+            <id>vaadin-addons</id>
+            <url>http://maven.vaadin.com/vaadin-addons</url>
+        </repository>
+    </repositories>
 
 </project>

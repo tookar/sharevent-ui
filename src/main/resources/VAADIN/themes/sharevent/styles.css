@@ -15049,7 +15049,7 @@ div.v-layout.v-horizontal.v-widget {
 	overflow: hidden;
 }
 
-.sharevent sharevent-container {
+.sharevent #sharevent-container {
 	background-color: #3668ff;
 	display: flex;
 	align-items: center;

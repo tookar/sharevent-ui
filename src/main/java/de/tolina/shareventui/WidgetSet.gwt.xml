@@ -1,0 +1,9 @@
+<!--
+  ~ (c) tolina GmbH, 2017
+  -->
+
+<module>
+    <inherits name="org.vaadin.addons.autocomplete.Widgetset"/>
+
+    <inherits name="com.vaadin.DefaultWidgetSet" />
+</module>

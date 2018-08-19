@@ -30,6 +30,7 @@ import com.vaadin.ui.UI;
 @PreserveOnRefresh
 @Push(transport = WEBSOCKET_XHR)
 @Theme("sharevent")
+@Widgetset("de.tolina.shareventui.WidgetSet")
 public class ShareventUI extends UI {
 	private final transient Logger log = LoggerFactory.getLogger(ShareventUI.class);
 

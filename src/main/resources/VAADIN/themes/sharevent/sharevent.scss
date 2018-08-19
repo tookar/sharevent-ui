@@ -37,7 +37,7 @@ $v-selection-color: darken(valo-focus-color(), 5);
 @mixin sharevent {
   @include valo;
 
-  sharevent-container {
+  #sharevent-container {
     background-color: #3668ff;
     display: flex;
     align-items: center;
