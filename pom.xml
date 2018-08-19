@@ -176,9 +176,6 @@
                     <draftCompile>false</draftCompile>
                     <compileReport>false</compileReport>
                     <style>OBF</style>
-                    <widgetsetMode>
-                        cdn
-                    </widgetsetMode>
                     <persistentunitcachedir>${project.build.directory}/gwtdirt</persistentunitcachedir>
                     <!-- Symbol maps etc, not needed in vaadin app, just target them outside
                         war -->
